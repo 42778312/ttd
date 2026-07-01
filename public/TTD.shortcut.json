@@ -1,0 +1,56 @@
+{
+  "name": "TTD - TikTok Downloader",
+  "description": "Download TikTok videos without watermark directly from Share Sheet",
+  "version": "1.0",
+  "actions": [
+    {
+      "name": "Receive Input",
+      "type": "is.workflow.actions.input",
+      "parameters": {
+        "InputType": "URLs and Text"
+      }
+    },
+    {
+      "name": "Get URLs from Input",
+      "type": "is.workflow.actions.geturlcomponent",
+      "parameters": {
+        "WFURLComponent": "URLs"
+      }
+    },
+    {
+      "name": "Resolve Video",
+      "type": "is.workflow.actions.downloadurl",
+      "parameters": {
+        "WFURL": "YOUR_DOMAIN/api/resolve?url=URL_FROM_PREVIOUS_STEP"
+      }
+    },
+    {
+      "name": "Get Download URL",
+      "type": "is.workflow.actions.getvalueforkey",
+      "parameters": {
+        "WFDictionaryKey": "downloadUrl"
+      }
+    },
+    {
+      "name": "Download Video",
+      "type": "is.workflow.actions.downloadurl",
+      "parameters": {}
+    },
+    {
+      "name": "Save to Photos",
+      "type": "is.workflow.actions.savetocameraroll",
+      "parameters": {}
+    },
+    {
+      "name": "Show Notification",
+      "type": "is.workflow.actions.notification",
+      "parameters": {
+        "WFNotificationActionBody": "Downloaded by TTD — no watermark!"
+      }
+    }
+  ],
+  "share_sheet": {
+    "enabled": true,
+    "accepted_types": ["URLs", "Safari web pages", "Text"]
+  }
+}

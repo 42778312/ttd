@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-background text-on-surface font-sans;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.06] backdrop-blur-[20px] border border-white/10;
+  }
+
+  .glass-elevated {
+    @apply bg-white/[0.12] backdrop-blur-[40px] border border-white/20
+      shadow-[0_24px_80px_rgba(0,0,0,0.4)];
+  }
+
+  .glass-hover {
+    @apply transition-[border-color,background-color] duration-200
+      hover:border-white/20 hover:bg-white/[0.08];
+  }
+
+  .glass-interactive {
+    @apply glass glass-hover cursor-pointer;
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-velocity {
+    @apply bg-gradient-velocity bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white font-semibold rounded-xl
+      hover:shadow-primary-glow hover:brightness-110
+      active:brightness-95 transition-all duration-200;
+  }
+
+  .input-glass {
+    @apply bg-white/[0.03] border border-transparent rounded-xl
+      focus-within:border-secondary focus-within:ring-2 focus-within:ring-secondary/40
+      transition-all duration-200;
+  }
+
+  .label-caps {
+    @apply text-label-caps uppercase tracking-widest text-on-surface-variant;
+  }
+
+  .grid-overlay {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 70%);
+  }
+
+  .animate-float {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 10s ease-in-out 2s infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-video-scroll-up {
+    animation: video-scroll-up linear infinite;
+  }
+
+  .animate-video-scroll-down {
+    animation: video-scroll-down linear infinite;
+  }
+
+  .animate-testimonial-scroll {
+    animation: testimonial-scroll linear infinite;
+  }
+
+  .testimonial-marquee-mask {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 4%,
+      black 96%,
+      transparent
+    );
+  }
+
+  .video-wall-mask {
+    mask-image: radial-gradient(
+      ellipse 100% 95% at 50% 50%,
+      black 50%,
+      rgba(0, 0, 0, 0.75) 75%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes video-scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes video-scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes testimonial-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,7 @@
+{"sessionId":"56a570","location":"tikwm.ts:resolve","message":"resolved download URL","data":{"hostname":"v16m-default.tiktokcdn-us.com","hasHd":true},"timestamp":1782930541081,"hypothesisId":"A,C"}
+{"sessionId":"56a570","location":"download/route.ts:entry","message":"download request","data":{"hasUrl":true,"hostname":"v16m-default.tiktokcdn-us.com","filename":"ttd-daxnur-7654906508148329749.mp4"},"timestamp":1782930543520,"hypothesisId":"A,C"}
+{"sessionId":"56a570","location":"download/route.ts:allowlist","message":"host allowlist check","data":{"hostname":"v16m-default.tiktokcdn-us.com","allowed":false},"timestamp":1782930543523,"hypothesisId":"A"}
+{"sessionId":"56a570","location":"tikwm.ts:resolve","message":"resolved download URL","data":{"hostname":"v16m-default.tiktokcdn-us.com","hasHd":true},"timestamp":1782930632462,"hypothesisId":"A,C"}
+{"sessionId":"56a570","location":"download/route.ts:entry","message":"download request","data":{"hasUrl":true,"hostname":"v16m-default.tiktokcdn-us.com","filename":"ttd-daxnur-7654906508148329749.mp4"},"timestamp":1782930634816,"hypothesisId":"A,C"}
+{"sessionId":"56a570","location":"download/route.ts:allowlist","message":"host allowlist check","data":{"hostname":"v16m-default.tiktokcdn-us.com","allowed":true},"timestamp":1782930634817,"hypothesisId":"A"}
+{"sessionId":"56a570","location":"download/route.ts:upstream","message":"upstream fetch result","data":{"status":200,"ok":true,"hostname":"v16m-default.tiktokcdn-us.com"},"timestamp":1782930636004,"hypothesisId":"B,D,E"}

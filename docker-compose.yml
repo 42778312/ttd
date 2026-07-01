@@ -1,0 +1,12 @@
+services:
+  ttd:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - TIKWM_API_BASE=https://www.tikwm.com/api/
+      - RATE_LIMIT_MAX=30
+      - RATE_LIMIT_WINDOW_MS=60000
+      - NEXT_PUBLIC_SHORTCUT_URL=/shortcut
+    restart: unless-stopped
