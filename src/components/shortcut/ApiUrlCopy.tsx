@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ApiUrlCopyProps {
   url: string;
@@ -22,21 +23,23 @@ export function ApiUrlCopy({ url }: ApiUrlCopyProps) {
 
   return (
     <div className="relative">
-      <code className="block bg-black/30 rounded-xl p-4 pr-14 text-sm font-mono text-secondary break-all border border-white/8">
+      <code className="block bg-muted rounded-lg p-4 pr-14 text-sm font-mono text-secondary break-all border border-border">
         {url}
       </code>
-      <button
+      <Button
         type="button"
+        variant="ghost"
+        size="icon"
         onClick={handleCopy}
-        className="absolute top-3 right-3 p-2 rounded-lg glass glass-hover text-on-surface-variant hover:text-white transition-colors"
+        className="absolute top-3 right-3"
         aria-label="Copy API URL"
       >
         {copied ? (
-          <Check className="w-4 h-4 text-secondary" />
+          <Check className="text-secondary" />
         ) : (
-          <Copy className="w-4 h-4" />
+          <Copy />
         )}
-      </button>
+      </Button>
     </div>
   );
 }

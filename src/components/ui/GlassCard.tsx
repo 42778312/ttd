@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
+import { Card } from "@/components/ui/card";
 
 interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
@@ -8,22 +9,22 @@ interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
 
 export function GlassCard({
   className,
-  hover = true,
+  hover = false,
   elevated = false,
   children,
   ...props
 }: GlassCardProps) {
   return (
-    <div
+    <Card
       className={cn(
-        "rounded-2xl p-3 lg:p-4",
-        elevated ? "glass-elevated" : "glass",
-        hover && "glass-hover",
+        "p-3 lg:p-4",
+        elevated && "shadow-md",
+        hover && "transition-colors hover:bg-accent/50",
         className
       )}
       {...props}
     >
       {children}
-    </div>
+    </Card>
   );
 }

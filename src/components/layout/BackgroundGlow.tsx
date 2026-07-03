@@ -35,7 +35,7 @@ function TikTokVideoTile({ seed }: { seed: number }) {
 
   return (
     <div
-      className="relative w-[88px] md:w-[104px] aspect-[9/16] rounded-xl overflow-hidden shrink-0 border border-white/[0.15] shadow-[0_8px_32px_rgba(0,0,0,0.35)] bg-black"
+      className="relative w-[88px] md:w-[104px] aspect-[9/16] rounded-lg overflow-hidden shrink-0 border border-border/40 bg-black"
       style={{ opacity }}
     >
       <Image
@@ -77,26 +77,15 @@ export function BackgroundGlow() {
     <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden>
       <div className="absolute inset-0 bg-background" />
 
-      {/* Scrolling TikTok video wall */}
       <div className="absolute inset-0 overflow-hidden video-wall-mask">
-        <div className="absolute inset-[-8%] flex justify-between gap-2 md:gap-3 opacity-[0.38] md:opacity-[0.45]">
+        <div className="absolute inset-[-8%] flex justify-between gap-2 md:gap-3 opacity-[0.32] md:opacity-[0.38]">
           {COLUMNS.map((config, i) => (
             <VideoColumn key={i} colIndex={i} config={config} />
           ))}
         </div>
       </div>
 
-      {/* Atmospheric radial gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[700px] bg-primary/15 rounded-full blur-[140px] animate-pulse-glow" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[500px] bg-secondary/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 left-1/3 w-[350px] h-[350px] bg-secondary/8 rounded-full blur-[90px]" />
-
-      {/* Center vignette — keeps foreground content readable */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_42%,rgba(1,1,1,0.55)_0%,rgba(1,1,1,0.28)_45%,rgba(1,1,1,0.05)_100%)]" />
-
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 grid-overlay opacity-25" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_42%,rgba(1,1,1,0.6)_0%,rgba(1,1,1,0.3)_50%,rgba(1,1,1,0.08)_100%)]" />
     </div>
   );
 }

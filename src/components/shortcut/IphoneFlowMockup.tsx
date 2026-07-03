@@ -55,7 +55,7 @@ function TikTokScreen() {
         <div className="w-6 h-6 rounded-full bg-white/10" />
         <div className="w-6 h-6 rounded-full bg-white/10" />
         <div
-          className="w-7 h-7 rounded-full bg-primary/80 flex items-center justify-center ring-2 ring-primary ring-offset-1 ring-offset-transparent animate-pulse-glow"
+          className="w-7 h-7 rounded-full bg-primary flex items-center justify-center"
           aria-hidden
         >
           <Share2 className="w-3.5 h-3.5 text-white" />
@@ -90,7 +90,7 @@ function ShareSheetScreen() {
             <span className="text-[8px] text-white/60">AirDrop</span>
           </div>
           <div className="flex items-center gap-2 p-1.5 rounded-lg bg-primary/20 border border-primary/40 ring-1 ring-primary/30">
-            <div className="w-6 h-6 rounded-md bg-gradient-primary flex items-center justify-center">
+            <div className="w-6 h-6 rounded-md bg-primary flex items-center justify-center">
               <span className="text-[6px] font-bold text-white">TTD</span>
             </div>
             <span className="text-[8px] text-white font-medium">TTD</span>
@@ -123,7 +123,7 @@ function PhotosScreen() {
         </div>
       </div>
       <div className="absolute bottom-3 inset-x-2">
-        <div className="glass rounded-lg px-2 py-1.5 flex items-center gap-1.5 border border-secondary/30">
+        <div className="rounded-lg px-2 py-1.5 flex items-center gap-1.5 border border-border bg-card">
           <CheckCircle2 className="w-3 h-3 text-secondary shrink-0" />
           <span className="text-[7px] text-white leading-tight">
             Downloaded by TTD — no watermark!

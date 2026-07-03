@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Link2, ClipboardPaste, Download, Loader2, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { ClipboardPaste, Download, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
 import { FeatureChips } from "./FeatureChips";
-import { Badge } from "@/components/ui/Badge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { resolveVideo } from "@/lib/api-client";
 import type { VideoData } from "@/types/video";
@@ -48,67 +49,61 @@ export function UrlInputBar({ onResolved, onError }: UrlInputBarProps) {
 
   return (
     <div className="w-full">
-      <div className="flex justify-center mb-2">
-        <Badge variant="primary" className="gap-1.5 py-1 px-3">
-          <Sparkles className="w-3 h-3 text-primary-light" />
-          <span className="text-[10px] text-primary-light font-medium">
-            The #1 TikTok Downloader Loved by Millions
-          </span>
-        </Badge>
-      </div>
-
-      <h1 className="text-2xl lg:text-[2rem] text-white text-center font-bold mb-2 tracking-tight leading-tight">
-        Download TikToks{" "}
-        <span className="text-gradient-velocity">without limits.</span>
+      <h1 className="text-xl sm:text-2xl lg:text-3xl text-foreground text-center font-semibold mb-2 tracking-tight px-1">
+        Download TikToks without limits
       </h1>
 
-      <p className="text-xs lg:text-sm text-on-surface-variant text-center max-w-md mx-auto mb-4 leading-relaxed">
-        Save TikTok videos instantly in HD. No watermark. No account needed.
+      <p className="text-sm text-muted-foreground text-center max-w-md mx-auto mb-5 px-1">
+        Save videos in HD. No watermark. No account needed.
       </p>
 
-      <div className="max-w-3xl mx-auto w-full">
-        <div className="glass rounded-xl p-1.5 ring-1 ring-secondary/15">
-          <div className="flex flex-col sm:flex-row items-stretch gap-1.5">
-            <div className="flex-1 flex items-center gap-2.5 input-glass px-3.5 py-2.5 rounded-lg">
-              <Link2 className="w-4 h-4 text-secondary shrink-0" />
-              <input
+      <div className="max-w-2xl mx-auto w-full">
+        <Card className="p-2">
+          <div className="flex flex-col sm:flex-row items-stretch gap-2">
+            <div className="flex-1 flex items-center gap-1 sm:gap-2 min-w-0">
+              <Input
                 type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleDownload()}
-                placeholder="Paste TikTok URL here..."
-                className="flex-1 bg-transparent text-sm text-white placeholder:text-on-surface-variant/55 outline-none min-w-0 font-mono"
+                placeholder="Paste TikTok URL"
+                className="border-0 shadow-none focus-visible:ring-0 font-mono text-sm min-w-0"
+                autoComplete="off"
+                autoCapitalize="off"
+                enterKeyHint="go"
               />
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="sm"
                 onClick={handlePaste}
-                className="flex items-center gap-1 text-xs font-medium text-on-surface-variant hover:text-secondary transition-colors shrink-0"
+                className="shrink-0 text-muted-foreground px-2 sm:px-3"
               >
-                <ClipboardPaste className="w-3.5 h-3.5" />
-                Paste
-              </button>
+                <ClipboardPaste />
+                <span className="hidden xs:inline">Paste</span>
+              </Button>
             </div>
 
             <Button
               onClick={handleDownload}
               disabled={loading}
-              className="rounded-lg px-6 py-2.5 shrink-0 text-sm"
+              className="shrink-0 w-full sm:w-auto"
             >
               {loading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="animate-spin" />
               ) : (
-                <Download className="w-4 h-4" />
+                <Download />
               )}
-              {loading ? "Resolving..." : "Download"}
+              {loading ? "Resolving…" : "Download"}
             </Button>
           </div>
 
           {loading && (
-            <div className="px-1 pt-2">
+            <div className="pt-2 px-1">
               <ProgressBar indeterminate />
             </div>
           )}
-        </div>
+        </Card>
       </div>
 
       <FeatureChips />

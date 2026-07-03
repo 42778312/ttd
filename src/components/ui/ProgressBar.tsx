@@ -14,7 +14,7 @@ export function ProgressBar({
   return (
     <div
       className={cn(
-        "h-1 w-full rounded-full bg-white/[0.06] overflow-hidden",
+        "h-1 w-full rounded-full bg-muted overflow-hidden",
         className
       )}
       role="progressbar"
@@ -24,7 +24,7 @@ export function ProgressBar({
     >
       <div
         className={cn(
-          "h-full rounded-full bg-gradient-velocity",
+          "h-full rounded-full bg-primary",
           indeterminate
             ? "w-1/3 animate-[shimmer_1.2s_ease-in-out_infinite]"
             : "transition-all duration-300"

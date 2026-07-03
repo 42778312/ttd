@@ -1,37 +1,31 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/layout/Logo";
 import { HomeLogoLink } from "@/components/layout/HomeLogoLink";
 import { Download } from "lucide-react";
 
 export function ShortcutPageHeader() {
   return (
-    <header className="relative z-20 px-gutter pt-4 pb-2">
-      <div className="max-w-container mx-auto">
-        <div className="glass rounded-xl px-4 py-2.5 flex items-center justify-between">
-          <HomeLogoLink>
-            <Logo />
-            <span className="text-[9px] label-caps text-on-surface-variant/70">
-              iPhone Shortcut
-            </span>
-          </HomeLogoLink>
+    <header className="relative z-20 px-gutter pt-safe pb-3 shrink-0">
+      <div className="max-w-container mx-auto flex items-center justify-between gap-2">
+        <HomeLogoLink>
+          <Logo />
+          <span className="hidden xs:block text-[10px] label-caps text-muted-foreground">
+            iPhone Shortcut
+          </span>
+        </HomeLogoLink>
 
-          <nav className="flex items-center gap-2">
-            <Link
-              href="/"
-              className="text-xs font-medium text-on-surface-variant hover:text-white transition-colors px-2 py-1 rounded-lg hover:bg-white/[0.04] hidden sm:block"
-            >
-              Web Downloader
-            </Link>
+        <nav className="flex items-center gap-1 shrink-0">
+          <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
+            <Link href="/">Web Downloader</Link>
+          </Button>
+          <Button variant="outline" size="sm" asChild>
             <Link href="/">
-              <Button variant="secondary" className="rounded-full px-3 py-1.5 text-xs gap-1">
-                <Download className="w-3 h-3" />
-                <span className="hidden sm:inline">Open TTD</span>
-                <span className="sm:hidden">TTD</span>
-              </Button>
+              <Download />
+              <span className="hidden xs:inline">Open TTD</span>
             </Link>
-          </nav>
-        </div>
+          </Button>
+        </nav>
       </div>
     </header>
   );

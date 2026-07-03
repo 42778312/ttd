@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { TESTIMONIALS } from "@/lib/constants";
 
 type Testimonial = (typeof TESTIMONIALS)[number];
@@ -13,7 +14,7 @@ function StarRating({ rating }: { rating: number }) {
           className={`w-2.5 h-2.5 ${
             i < rating
               ? "fill-primary text-primary"
-              : "fill-white/10 text-white/20"
+              : "fill-muted text-muted"
           }`}
         />
       ))}
@@ -23,9 +24,9 @@ function StarRating({ rating }: { rating: number }) {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="glass rounded-xl p-2.5 glass-hover group w-64 shrink-0">
-      <div className="flex items-center gap-2 mb-1.5">
-        <div className="relative w-7 h-7 rounded-full overflow-hidden border border-primary/30 shrink-0">
+    <Card className="p-3 w-56 sm:w-64 shrink-0">
+      <div className="flex items-center gap-2 mb-2">
+        <div className="relative w-7 h-7 rounded-full overflow-hidden border border-border shrink-0">
           <Image
             src={testimonial.photo}
             alt={testimonial.name}
@@ -35,32 +36,32 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-semibold text-white truncate">
+          <p className="text-xs font-medium text-foreground truncate">
             {testimonial.name}
           </p>
-          <p className="text-[9px] font-mono text-on-surface-variant/70 truncate">
+          <p className="text-[10px] text-muted-foreground truncate">
             {testimonial.videos}
           </p>
         </div>
         <StarRating rating={testimonial.rating} />
       </div>
-      <p className="text-[10px] text-on-surface-variant leading-snug line-clamp-2">
+      <p className="text-xs text-muted-foreground leading-snug line-clamp-2">
         {testimonial.text}
       </p>
-      <p className="text-[9px] text-on-surface-variant/50 mt-1 font-mono">
+      <p className="text-[10px] text-muted-foreground/70 mt-1.5">
         {testimonial.time}
       </p>
-    </div>
+    </Card>
   );
 }
 
-function TestimonialsMarquee() {
+export function TrustBar() {
   const looped = [...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
-    <div className="hidden lg:block overflow-hidden testimonial-marquee-mask">
+    <div className="w-full shrink-0 mt-auto overflow-hidden testimonial-marquee-mask -mx-gutter">
       <div
-        className="flex w-max gap-2 animate-testimonial-scroll hover:[animation-play-state:paused]"
+        className="flex w-max gap-3 animate-testimonial-scroll hover:[animation-play-state:paused]"
         style={{ animationDuration: "55s" }}
       >
         {looped.map((testimonial, i) => (
@@ -68,45 +69,5 @@ function TestimonialsMarquee() {
         ))}
       </div>
     </div>
-  );
-}
-
-export function TrustBar() {
-  return (
-    <section className="shrink-0 space-y-2">
-      <div className="flex items-center justify-center gap-3">
-        <div className="flex -space-x-2">
-          {TESTIMONIALS.slice(0, 4).map((testimonial) => (
-            <div
-              key={testimonial.name}
-              className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-background shrink-0"
-            >
-              <Image
-                src={testimonial.photo}
-                alt={testimonial.name}
-                fill
-                sizes="28px"
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
-        <div>
-          <p className="text-xs font-semibold text-white">
-            Loved by <span className="text-gradient-primary">1,247,893+</span> users
-          </p>
-          <div className="flex items-center gap-1 mt-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="w-3 h-3 fill-primary text-primary" />
-            ))}
-            <span className="text-[10px] text-on-surface-variant ml-1">
-              4.9/5 · 86k+ reviews
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <TestimonialsMarquee />
-    </section>
   );
 }

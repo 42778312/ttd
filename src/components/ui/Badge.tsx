@@ -1,31 +1,35 @@
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
 import { cn } from "@/lib/utils";
-import { HTMLAttributes } from "react";
 
-interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  variant?: "primary" | "secondary" | "outline";
-}
+const badgeVariants = cva(
+  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-transparent bg-primary text-primary-foreground shadow",
+        secondary:
+          "border-transparent bg-secondary text-secondary-foreground",
+        outline: "text-foreground",
+        muted: "border-transparent bg-muted text-muted-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "outline",
+    },
+  }
+);
 
-export function Badge({
-  className,
-  variant = "outline",
-  children,
-  ...props
-}: BadgeProps) {
+export interface BadgeProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof badgeVariants> {}
+
+function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium",
-        variant === "primary" &&
-          "bg-primary/15 text-primary-light border border-primary/25",
-        variant === "secondary" &&
-          "bg-secondary/10 text-secondary border border-secondary/25",
-        variant === "outline" &&
-          "border border-white/12 text-on-surface-variant bg-white/[0.02]",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </span>
+    <div className={cn(badgeVariants({ variant }), className)} {...props} />
   );
 }
+
+export { Badge, badgeVariants };

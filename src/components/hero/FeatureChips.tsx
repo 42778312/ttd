@@ -1,6 +1,6 @@
 import { Shield, Zap, User, Monitor } from "lucide-react";
 import { FEATURE_CHIPS } from "@/lib/constants";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/badge";
 
 const ICONS = {
   shield: Shield,
@@ -9,16 +9,17 @@ const ICONS = {
   user: User,
 } as const;
 
-const VARIANTS = ["primary", "secondary", "outline", "primary"] as const;
-
 export function FeatureChips() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2">
-      {FEATURE_CHIPS.map((chip, i) => {
+    <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+      {FEATURE_CHIPS.map((chip) => {
         const Icon = ICONS[chip.icon];
-        const variant = VARIANTS[i % VARIANTS.length];
         return (
-          <Badge key={chip.label} variant={variant} className="gap-1 py-1 px-2 text-[10px]">
+          <Badge
+            key={chip.label}
+            variant="muted"
+            className="gap-1.5 py-1 font-normal"
+          >
             <Icon className="w-3 h-3" />
             {chip.label}
           </Badge>

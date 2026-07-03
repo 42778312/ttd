@@ -1,15 +1,61 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     extend: {
       colors: {
-        background: "#010101",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          light: "#ffb2b7",
+          container: "#ff516a",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+          light: "#c3fffa",
+          container: "#00f0e8",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         surface: {
           DEFAULT: "#141313",
           dim: "#141313",
@@ -22,20 +68,18 @@ const config: Config = {
             highest: "#353434",
           },
         },
-        primary: {
-          DEFAULT: "#ff0050",
-          light: "#ffb2b7",
-          container: "#ff516a",
-        },
-        secondary: {
-          DEFAULT: "#00f2ea",
-          light: "#c3fffa",
-          container: "#00f0e8",
-        },
         "on-surface": "#e5e2e1",
         "on-surface-variant": "#e8bcbd",
         outline: "#ae8789",
         error: "#ffb4ab",
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        xl: "calc(var(--radius) + 4px)",
+        "2xl": "calc(var(--radius) + 8px)",
+        "3xl": "calc(var(--radius) + 16px)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
@@ -49,25 +93,15 @@ const config: Config = {
         "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
         "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }],
       },
-      borderRadius: {
-        lg: "1.5rem",
-        xl: "2rem",
-        "2xl": "2rem",
-        "3xl": "3rem",
-      },
       spacing: {
-        gutter: "24px",
+        gutter: "clamp(1rem, 4vw, 1.5rem)",
+        "safe-top": "env(safe-area-inset-top, 0px)",
+        "safe-bottom": "env(safe-area-inset-bottom, 0px)",
+        "safe-left": "env(safe-area-inset-left, 0px)",
+        "safe-right": "env(safe-area-inset-right, 0px)",
       },
       maxWidth: {
         container: "1100px",
-      },
-      boxShadow: {
-        "primary-glow": "0 0 20px rgba(255, 0, 80, 0.3)",
-        "secondary-glow": "0 0 20px rgba(0, 242, 234, 0.3)",
-      },
-      backgroundImage: {
-        "gradient-primary": "linear-gradient(135deg, #ff0050 0%, #ff516a 100%)",
-        "gradient-velocity": "linear-gradient(90deg, #00f2ea 0%, #ff0050 100%)",
       },
       keyframes: {
         shimmer: {
@@ -80,7 +114,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;
