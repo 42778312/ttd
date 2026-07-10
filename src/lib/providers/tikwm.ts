@@ -45,6 +45,8 @@ export async function resolveViaTikwm(url: string): Promise<ResolveResponse> {
     author,
     cover: data.cover,
     downloadUrl: data.hdplay ?? data.play,
+    standardUrl: data.play,
+    isHd: Boolean(data.hdplay),
     duration: data.duration,
   };
 }

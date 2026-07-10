@@ -4,6 +4,8 @@ export type VideoData = {
   author: string;
   cover: string;
   downloadUrl: string;
+  standardUrl?: string;
+  isHd: boolean;
   duration?: number;
 };
 

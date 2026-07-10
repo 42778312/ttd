@@ -5,17 +5,19 @@ import { ClipboardPaste, Download, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { PreviewCard } from "@/components/cards/PreviewCard";
 import { FeatureChips } from "./FeatureChips";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { resolveVideo } from "@/lib/api-client";
 import type { VideoData } from "@/types/video";
 
 interface UrlInputBarProps {
+  video: VideoData | null;
   onResolved: (video: VideoData) => void;
   onError: (message: string) => void;
 }
 
-export function UrlInputBar({ onResolved, onError }: UrlInputBarProps) {
+export function UrlInputBar({ video, onResolved, onError }: UrlInputBarProps) {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -94,7 +96,7 @@ export function UrlInputBar({ onResolved, onError }: UrlInputBarProps) {
               ) : (
                 <Download />
               )}
-              {loading ? "Resolving…" : "Download"}
+              {loading ? "Resolving…" : "Get Video"}
             </Button>
           </div>
 
@@ -104,6 +106,12 @@ export function UrlInputBar({ onResolved, onError }: UrlInputBarProps) {
             </div>
           )}
         </Card>
+
+        {video && (
+          <div className="mt-3">
+            <PreviewCard video={video} onError={onError} />
+          </div>
+        )}
       </div>
 
       <FeatureChips />

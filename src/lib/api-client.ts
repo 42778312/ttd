@@ -16,12 +16,28 @@ export async function resolveVideo(url: string): Promise<ResolveResponse> {
   return data as ResolveResponse;
 }
 
-export function triggerDownload(downloadUrl: string, filename: string) {
+export async function downloadVideo(
+  downloadUrl: string,
+  filename: string
+): Promise<void> {
   const proxyUrl = `/api/download?url=${encodeURIComponent(downloadUrl)}&filename=${encodeURIComponent(filename)}`;
+
+  const res = await fetch(proxyUrl);
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(
+      (data as { error?: string }).error ?? "Failed to download video"
+    );
+  }
+
+  const blob = await res.blob();
+  const blobUrl = URL.createObjectURL(blob);
+
   const a = document.createElement("a");
-  a.href = proxyUrl;
+  a.href = blobUrl;
   a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  URL.revokeObjectURL(blobUrl);
 }

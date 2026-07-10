@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AlertCircle } from "lucide-react";
 import { BackgroundGlow } from "@/components/layout/BackgroundGlow";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/hero/HeroSection";
-import { PreviewCard } from "@/components/cards/PreviewCard";
 import { ShortcutHint } from "@/components/shortcut/ShortcutHint";
 import { TrustBar } from "@/components/social/TrustBar";
 import { StatsFooter } from "@/components/social/StatsFooter";
@@ -16,6 +15,16 @@ export default function Home() {
   const [error, setError] = useState("");
   const [homeKey, setHomeKey] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (video) {
+      requestAnimationFrame(() => {
+        document
+          .getElementById("video-preview")
+          ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+  }, [video]);
 
   const handleHomeClick = () => {
     setVideo(null);
@@ -35,6 +44,7 @@ export default function Home() {
       >
         <HeroSection
           key={homeKey}
+          video={video}
           onResolved={(v) => {
             setVideo(v);
             setError("");
@@ -46,12 +56,6 @@ export default function Home() {
           <div className="flex items-center justify-center gap-2 text-sm text-destructive shrink-0 px-3 py-2 rounded-md bg-destructive/10 border border-destructive/20 max-w-md mx-auto w-full">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <p className="text-center">{error}</p>
-          </div>
-        )}
-
-        {video && (
-          <div className="flex justify-center shrink-0 w-full px-1">
-            <PreviewCard video={video} />
           </div>
         )}
 
